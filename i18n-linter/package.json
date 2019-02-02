@@ -1,0 +1,13 @@
+{
+  "name": "action-translator",
+  "version": "1.0.0",
+  "description": "Finds missing translation tokens",
+  "main": "index.js",
+  "author": "Marcelo Alves <marcelo.alves@vas.com> Jason Soares <jason.soares@vas.com>",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@octokit/rest": "^16.14.1",
+    "lodash": "^4.17.11"
+  }
+}
