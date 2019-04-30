@@ -15,7 +15,7 @@ console.log('Event Action: ', GITHUB_EVENT.action)
 
 if (GITHUB_EVENT_NAME !== 'pull_request' || GITHUB_EVENT.action !== 'opened') {
   console.log('Nothing to do')
-  process.exit()
+  process.exit(78)
 }
 
 findTranslations(octokit, GITHUB_WORKSPACE, GITHUB_OWNER, GITHUB_REPO, GITHUB_EVENT.number)
