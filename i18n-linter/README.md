@@ -8,22 +8,24 @@ Checks new PRs for missing translation keys when using [react-i18nify](https://g
 
 ## Usage
 
-```workflow
-workflow "Lint I18n" {
-  on = "pull_request"
-  resolves = ["lint"]
-}
-
-action "lint" {
-  uses = "vas-dev/vas-actions/i18n-linter@master"
-  secrets = ["GITHUB_TOKEN"]
-  env = {
-    TRANSLATION_PATH = "path/to/translations.en.json"
-  }
-}
+```yaml
+name: Lint I18n
+on:
+  pull_request:
+    types: [opened, synchronize]
+jobs:
+  action-filter:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: lint
+        uses: vas-dev/vas-actions/i18n-linter@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TRANSLATION_PATH: path/to/translations.en.json
 ```
 
 ### Maintainers
 
-* [Marcelo Alves](https://github.com/marceloalves)
-* [Jason Soares](https://github.com/jasonsoares)
+- [Marcelo Alves](https://github.com/marceloalves)
+- [Jason Soares](https://github.com/jasonsoares)
