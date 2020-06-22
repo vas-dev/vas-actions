@@ -17,7 +17,7 @@ module.exports = async (octokit, workspace, owner, repo, number) => {
       const fileData = fs.readFileSync(path.join(workspace, filePath.filename)).toString().split('\n')
 
       fileData.forEach((line, index) => {
-        const regex = line.match(/(?:I18n\.t\(')((\*)|([a-zA-Z0-9]+)(\.\w[a-zA-Z0-9]\w+)*\*?)/)
+        const regex = line.match(/(?:t\(')((\*)|([a-zA-Z0-9]+)(\.\w[a-zA-Z0-9]\w+)*\*?)/)
         if (regex) {
           const isAvailable = _.has(TRANSLATION_PATH, regex[1])
           if (!isAvailable) {
