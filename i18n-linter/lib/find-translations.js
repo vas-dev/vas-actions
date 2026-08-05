@@ -9,11 +9,7 @@ module.exports = async (octokit, workspace, owner, repo, number) => {
     repo,
     number
   })
-  const fileList = result.data.filter(file =>
-    file.status !== 'removed' &&
-    /\.(js|ts|tsx|jsx)$/.test(file.filename) &&
-    !/(\.spec|\.test|(^|\/)test)/.test(file.filename)
-  )
+  const fileList = result.data.filter(file => file.status !== 'removed' && file.filename.match(/^(?:(?!test).)*.(js|ts|tsx)$/))
 
   try {
     let missingTranslations = []
