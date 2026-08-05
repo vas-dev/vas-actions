@@ -11,7 +11,7 @@ module.exports = async (octokit, workspace, owner, repo, number) => {
   })
   const fileList = result.data.filter(file =>
     file.status !== 'removed' &&
-    /\.(js|ts|tsx)$/.test(file.filename) &&
+    /\.(js|ts|tsx|jsx)$/.test(file.filename) &&
     !/(\.spec|\.test|(^|\/)test)/.test(file.filename)
   )
 
