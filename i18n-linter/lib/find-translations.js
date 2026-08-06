@@ -10,7 +10,7 @@ module.exports = async (octokit, workspace, owner, repo, number) => {
     number
   })
   const fileList = result.data.filter(file => file.status !== 'removed' && file.filename.match(/^(?:(?!(test|spec)).)*\.(js|ts|tsx|jsx)$/))
-
+  console.log(JSON.stringify(fileList))
   try {
     let missingTranslations = []
     fileList.forEach(filePath => {
