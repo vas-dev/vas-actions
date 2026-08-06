@@ -13,7 +13,7 @@ const GITHUB_REPO = GITHUB_EVENT.repository.name
 console.log('Event Name: ', GITHUB_EVENT_NAME)
 console.log('Event Action: ', GITHUB_EVENT.action)
 
-if (GITHUB_EVENT_NAME !== 'pull_request' || GITHUB_EVENT.action !== 'opened') {
+if (GITHUB_EVENT_NAME !== 'pull_request') {
   console.log('Nothing to do')
   process.exit()
 }
