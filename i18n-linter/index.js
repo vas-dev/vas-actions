@@ -23,6 +23,23 @@ findTranslations(octokit, GITHUB_WORKSPACE, GITHUB_OWNER, GITHUB_REPO, GITHUB_EV
     if (missingTranslations.length > 0) {
       const body = buildComment(missingTranslations)
 
+      const { data: comments } = await octokit.issues.listComments({
+        owner: GITHUB_OWNER,
+        repo: GITHUB_REPO,
+        number: GITHUB_EVENT.number
+      })
+
+      const existing = comments.find(c => c.body.startsWith('### Missing Translations'))
+
+      if (existing) {
+        return octokit.issues.updateComment({
+          owner: GITHUB_OWNER,
+          repo: GITHUB_REPO,
+          comment_id: existing.id,
+          body
+        })
+      }
+
       return octokit.issues.createComment({
         owner: GITHUB_OWNER,
         repo: GITHUB_REPO,
